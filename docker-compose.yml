@@ -1,0 +1,18 @@
+services:
+  db:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: serveur-tp2full
+    ports:
+      - "9090:8080"
+    networks:
+      - app-network
+    volumes:
+      - "./data:/app/data"
+
+volumes:
+  db_data:
+
+networks:
+  app-network:
