@@ -7,7 +7,7 @@ import { Observable } from "rxjs";
 
 })
 export class ArtistService {
-    private baseUrl = 'http://localhost:9090/artists';
+    private baseUrl = 'http://localhost:8080/artists';
 
     constructor(private http: HttpClient) {}
 
