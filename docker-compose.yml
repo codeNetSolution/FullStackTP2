@@ -1,5 +1,5 @@
 services:
-  db:
+  spring-boot-serveur:
     build:
       context: .
       dockerfile: Dockerfile
@@ -10,6 +10,20 @@ services:
       - app-network
     volumes:
       - "./data:/app/data"
+
+  angular-app:
+    build:
+      context: ./Frontend/EventManagementApp/
+      dockerfile: Dockerfile
+    image: angular-app-tp2
+    ports:
+      - "4200:4200"
+    volumes:
+      - ./Frontend/EventManagementApp:/app
+      - /app/node_modules
+    networks:
+      - app-network
+    command: ["npm", "start", "--", "--host", "0.0.0.0"]
 
 volumes:
   db_data:
