@@ -1,0 +1,116 @@
+<div class="artist-detail-container bg-gray-100 text-gray-800 font-sans min-h-screen p-6">
+  <h1 class="text-4xl font-bold text-center mb-8">Détail de l'Artiste</h1>
+  <div 
+    *ngIf="errorMessage" 
+    class="bg-red-100 text-red-700 px-6 py-4 rounded-lg mb-6 flex items-center space-x-4">
+    <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+        d="M13 16h-1v-4h-1m-1 4h4m0 0a2 2 0 100-4 2 2 0 000 4zm6 2a9 9 0 11-12.8-9.3" />
+    </svg>
+    <span>{{ errorMessage }}</span>
+  </div>
+  <div class="back-button-container text-center mb-6">
+    <button 
+      (click)="goBack()" 
+      class="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-8 py-3 rounded-full shadow-md transform transition-all duration-300 hover:scale-105 inline-flex items-center space-x-2">
+      <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+      </svg>
+      <span>Retour</span>
+    </button>
+  </div>
+  <div *ngIf="artist && !errorMessage; else noDataTemplate" class="details-container bg-white shadow-lg rounded-lg p-6 mb-6">
+    <div *ngIf="!isEditing">
+      <p class="text-lg mb-3"><strong class="text-gray-800">Nom :</strong> {{ artist.name }}</p>
+      <p class="text-lg mb-3"><strong class="text-gray-800">Genre :</strong> {{ artist.genre || 'Non spécifié' }}</p>
+      <p class="text-lg mb-4"><strong class="text-gray-800">Événements :</strong></p>
+      <ul class="event-list list-disc list-inside mb-4">
+        <li 
+          *ngFor="let event of artist.events" 
+          class="flex justify-between items-center py-2 border-b">
+          <span>{{ event.name }} ({{ event.startDate }} - {{ event.endDate }})</span>
+          <button 
+            (click)="removeEvent(event.id)" 
+            class="text-sm text-red-500 hover:text-red-700">
+            Retirer
+          </button>
+        </li>
+      </ul>
+      <button 
+        (click)="toggleEdit()" 
+        class="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-6 py-2 rounded-full shadow-md transition-all duration-300">
+        Modifier
+      </button>
+    </div>
+    <div class="assign-event mt-6">
+      <h3 class="text-2xl font-bold mb-4">Assigner un Événement</h3>
+      <div class="flex space-x-4">
+        <select 
+          [(ngModel)]="selectedEventId" 
+          class="flex-grow border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <option [value]="null" disabled selected>Choisir un événement</option>
+          <option *ngFor="let event of availableEvents" [value]="event.id">
+            {{ event.name }}
+          </option>
+        </select>
+        <button 
+          (click)="assignEvent()" 
+          class="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-6 py-2 rounded-full shadow-md transition-all duration-300">
+          Assigner
+        </button>
+      </div>
+    </div>
+    <form 
+      *ngIf="isEditing" 
+      (ngSubmit)="saveChanges()" 
+      class="form-edit mt-6 bg-gray-50 p-6 rounded-lg shadow">
+      <div class="mb-4">
+        <label for="artist-name" class="block text-gray-800 font-bold mb-2">Nom :</label>
+        <input
+          id="artist-name"
+          [(ngModel)]="artist.name"
+          name="name"
+          required
+          minlength="3"
+          #nameInput="ngModel"
+          class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+        <div *ngIf="nameInput.errors && nameInput.touched" class="text-red-500 text-sm mt-1">
+          <p *ngIf="nameInput.errors['required']">Le nom est requis.</p>
+          <p *ngIf="nameInput.errors['minlength']">
+            Le nom doit contenir au moins 3 caractères.
+          </p>
+        </div>
+      </div>
+
+      <div class="mb-4">
+        <label for="artist-genre" class="block text-gray-800 font-bold mb-2">Genre :</label>
+        <select 
+          id="artist-genre" 
+          [(ngModel)]="artist.genre" 
+          name="genre" 
+          required
+          class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <option *ngFor="let genre of genres" [value]="genre">{{ genre }}</option>
+        </select>
+      </div>
+
+      <div class="form-actions flex space-x-4 mt-4">
+        <button 
+          type="submit" 
+          class="bg-green-500 hover:bg-green-600 text-white font-semibold px-6 py-2 rounded-full shadow-md transition-all duration-300">
+          Sauvegarder
+        </button>
+        <button 
+          type="button" 
+          class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold px-6 py-2 rounded-full shadow-md transition-all duration-300"
+          (click)="toggleEdit()">
+          Annuler
+        </button>
+      </div>
+    </form>
+  </div>
+  <ng-template #noDataTemplate>
+    <p class="no-data text-center text-gray-500">Aucun détail disponible pour cet artiste.</p>
+  </ng-template>
+</div>

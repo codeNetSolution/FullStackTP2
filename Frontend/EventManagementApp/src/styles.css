@@ -1,0 +1,90 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* Styles personnalisés pour les Toasts */
+
+/* Conteneur principal des Toasts */
+.toast-container {
+    z-index: 1050; /* S'assure que les Toasts sont au-dessus de tout */
+  }
+  
+  /* Toast de base */
+  .toast {
+    border-radius: 8px; /* Coins arrondis */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ombre élégante */
+    padding: 15px;
+    font-family: 'Arial', sans-serif;
+    font-size: 14px;
+    color: #ffffff;
+  }
+  
+  /* Types de Toast */
+  
+  /* Succès */
+  .toast-success {
+    background-color: #28a745; /* Vert */
+    border: 2px solid #218838; /* Vert plus foncé */
+  }
+  
+  /* Erreur */
+  .toast-error {
+    background-color: #dc3545; /* Rouge */
+    border: 2px solid #c82333; /* Rouge plus foncé */
+  }
+  
+  /* Avertissement */
+  .toast-warning {
+    background-color: #ffc107; /* Jaune */
+    border: 2px solid #e0a800; /* Jaune plus foncé */
+    color: #212529; /* Couleur de texte sombre */
+  }
+  
+  /* Information */
+  .toast-info {
+    background-color: #17a2b8; /* Bleu */
+    border: 2px solid #138496; /* Bleu plus foncé */
+  }
+  
+  /* Animation pour faire apparaître les Toasts */
+  .toast.fade {
+    animation: fadeIn 0.5s, fadeOut 0.5s 2.5s; /* Animation d'apparition et disparition */
+  }
+  
+  /* Animation d'apparition */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Animation de disparition */
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    to {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+  }
+  
+  /* Bouton de fermeture */
+  .toast-close-button {
+    color: #ffffff; /* Couleur blanche */
+    font-size: 18px;
+    opacity: 0.8;
+    transition: opacity 0.3s;
+  }
+  
+  .toast-close-button:hover {
+    opacity: 1; /* Surlignement au survol */
+  }
+  

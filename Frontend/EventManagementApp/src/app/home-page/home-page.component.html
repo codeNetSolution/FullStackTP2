@@ -1,0 +1,62 @@
+<div class="homepage-container bg-gradient-to-b from-blue-50 to-white text-gray-800 font-sans min-h-screen">
+
+  <header class="relative">
+    <img src="/images/hero-image2.jpg" alt="Hero Banner" class="w-full h-64 object-cover" />
+    <div class="absolute inset-0 bg-gradient-to-b from-black via-transparent to-transparent opacity-70 flex flex-col items-center justify-center text-center px-6">
+      <h1 class="text-5xl font-extrabold text-white mb-3">
+        Bienvenue sur <span class="text-blue-400">EventManager</span>
+      </h1>
+      <p class="text-lg text-gray-200 mb-6 max-w-2xl">
+        Gérez vos artistes et événements avec une interface de classe mondiale.
+      </p>
+      <div class="flex space-x-4">
+        <button 
+          (click)="navigateTo('events')" 
+          class="px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-full shadow-lg transform transition-all duration-300 hover:scale-105">
+          Voir les Événements
+        </button>
+        <button 
+          (click)="navigateTo('artists')" 
+          class="px-6 py-3 bg-gray-800 hover:bg-gray-900 text-white font-semibold rounded-full shadow-lg transform transition-all duration-300 hover:scale-105">
+          Voir les Artistes
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <section class="py-16 bg-gray-50">
+    <h2 class="text-4xl font-extrabold text-center mb-8">
+      <span class="text-blue-500">Fonctionnalités Clés</span>
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+      <div class="feature-card bg-white hover:shadow-xl rounded-lg p-8 transition-all duration-300">
+        <img src="/icons/events.jpg" alt="Événements" class="w-16 h-16 mb-4 mx-auto" />
+        <h3 class="text-xl font-bold text-center mb-3">Gérez vos Événements</h3>
+        <p class="text-center text-gray-600">Suivez vos événements avec une interface élégante et intuitive.</p>
+      </div>
+      <div class="feature-card bg-white hover:shadow-xl rounded-lg p-8 transition-all duration-300">
+        <img src="/icons/artists.jpg" alt="Artistes" class="w-16 h-16 mb-4 mx-auto" />
+        <h3 class="text-xl font-bold text-center mb-3">Supervisez vos Artistes</h3>
+        <p class="text-center text-gray-600">Gérez les artistes et développez leur visibilité avec style.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-blue-500 text-white py-16 text-center">
+    <h2 class="text-4xl font-extrabold mb-4">Prêt à démarrer ?</h2>
+    <p class="text-lg mb-6 max-w-xl mx-auto">
+      Découvrez un outil qui simplifie la gestion de vos artistes et événements.
+    </p>
+    <button 
+      (click)="navigateTo('events')" 
+      class="px-8 py-4 bg-white text-blue-500 font-semibold rounded-full hover:bg-gray-100 shadow-lg transform transition-all duration-300 hover:scale-105">
+      Commencer
+    </button>
+  </section>
+
+  <footer class="bg-gray-900 text-gray-400 py-6">
+    <div class="text-center">
+      <p>© 2025 <span class="text-blue-400">EventManager</span> - Abdelkrim SAIDOUN. Tous droits réservés.</p>
+    </div>
+  </footer>
+</div>
