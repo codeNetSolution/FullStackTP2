@@ -1,3 +1,6 @@
 *.jar 
 /.idea
 node_modules/
+.idea/
+.vscode/
+.angular/cache/
